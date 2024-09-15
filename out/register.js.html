@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: register.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: register.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * The base URL for the Firebase Realtime Database.
+ * @constant {string}
+ */
+const BASE_URL = "https://join-40dd0-default-rtdb.europe-west1.firebasedatabase.app/";
+
+/**
+ * An object to hold the registration information.
+ * @type {Object}
+ * @property {Array&lt;string>} name - Array of names.
+ * @property {Array&lt;string>} email - Array of email addresses.
+ * @property {Array&lt;string>} password - Array of passwords.
+ * @property {Array&lt;string>} repeatPassword - Array of repeated passwords.
+ */
+let registerInfo = {
+  name: [],
+  email: [],
+  password: [],
+  repeatPassword: []
+};
+
+/**
+ * Fetches the registration information from Firebase and updates the `registerInfo` object.
+ * @async
+ * @returns {Promise&lt;void>}
+ */
+async function fetchRegisterInfo() {
+  try {
+    let response = await fetch(BASE_URL + "registerInfo.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    let data = await response.json();
+    if (data) {
+      registerInfo = data; 
+    }
+  } catch (error) {
+    console.error('Error fetching registerInfo from Firebase:', error);
+  }
+}
+
+/**
+ * Saves the current `registerInfo` object to Firebase.
+ * @async
+ * @returns {Promise&lt;void>}
+ */
+async function saveRegisterInfoToFirebase() {
+  try {
+    let response = await fetch(BASE_URL + "registerInfo.json", {
+      method: 'PUT', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(registerInfo)
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    await response.json();
+  } catch (error) {
+    console.error('Error saving data to Firebase:', error);
+  }
+}
+
+/**
+ * Adds new registration information to the `registerInfo` object.
+ * @param {Object} newRegisterInfo - The new registration information to add.
+ * @param {string} newRegisterInfo.name - The name of the user.
+ * @param {string} newRegisterInfo.email - The email of the user.
+ * @param {string} newRegisterInfo.password - The password of the user.
+ * @param {string} newRegisterInfo.repeatPassword - The repeated password of the user.
+ */
+function addRegisterInfo(newRegisterInfo) {
+  registerInfo.name.push(newRegisterInfo.name);
+  registerInfo.email.push(newRegisterInfo.email);
+  registerInfo.password.push(newRegisterInfo.password);
+  registerInfo.repeatPassword.push(newRegisterInfo.repeatPassword);
+}
+
+/**
+ * Validates the format of the given name. The name must contain exactly two words and no numbers.
+ * @param {string} name - The name to validate.
+ * @returns {boolean} `true` if the name is valid, otherwise `false`.
+ */
+function validateName(name) {
+  let words = name.trim().split(/\s+/);
+  if (/\d/.test(name)) {
+    document.getElementById('invalidName').classList.add('invalid');
+    return false;
+  }
+  
+  if (words.length !== 2) {
+    document.getElementById('invalidName').classList.add('invalid');
+    return false;
+  } else {
+    document.getElementById('invalidName').classList.remove('invalid');
+    return true;
+  }
+}
+
+/**
+ * Handles the form submission event, validates the form, and submits the registration information.
+ * @param {Event} event - The form submission event.
+ * @async
+ * @returns {Promise&lt;void>}
+ */
+async function handleFormSubmit(event) {
+  event.preventDefault(); 
+  const registerInfo = extractFormValues();
+  if (!validateForm(registerInfo)) {
+    return;
+  }
+  if (await isEmailInUse(registerInfo.email)) {
+    displayEmailInUseError();
+    return;
+  }
+  await submitRegistration(registerInfo);
+}
+
+/**
+ * Extracts the form values and returns them as an object.
+ * @returns {Object} The form values.
+ * @returns {string} return.name - The name input.
+ * @returns {string} return.email - The email input.
+ * @returns {string} return.password - The password input.
+ * @returns {string} return.repeatPassword - The repeated password input.
+ */
+function extractFormValues() {
+  return {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    password: document.getElementById('password').value,
+    repeatPassword: document.getElementById('repeatPassword').value
+  };
+}
+
+/**
+ * Validates the registration form.
+ * @param {Object} registerInfo - The registration information to validate.
+ * @returns {boolean} `true` if the form is valid, otherwise `false`.
+ */
+function validateForm(registerInfo) {
+  if (!validateName(registerInfo.name)) {
+    displayNameError();
+    return false;
+  }
+  if (!displayRequiredPasswordFormat()) {
+    return false;
+  }
+  if (registerInfo.password !== registerInfo.repeatPassword) {
+    displayPasswordMismatchError();
+    return false;
+  }
+  if (!document.getElementById('acceptPolicy').checked) {
+    displayPolicyError();
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Displays an error message for an invalid name.
+ */
+function displayNameError() {
+  document.getElementById('wrongRepeat').innerHTML = `Name must contain exactly two words and no numbers`;
+}
+
+/**
+ * Displays an error message for not accepting the privacy policy.
+ */
+function displayPolicyError() {
+  document.getElementById('wrongRepeat').innerHTML = `You must accept our Privacy Policy`;
+  document.getElementById('invalidPolicy').classList.add('invalid');
+}
+
+/**
+ * Validates the password format and displays an error message if it is invalid.
+ * The password must be at least 8 characters long and contain numbers, upper, and lowercase letters.
+ * @returns {boolean} `true` if the password format is valid, otherwise `false`.
+ */
+function displayRequiredPasswordFormat() {
+  let password = document.getElementById('password').value;
+  let passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
+  if (password.length &lt; 8) {
+    document.getElementById('wrongRepeat').innerHTML = `Password must be at least 8 characters long.`;
+    document.getElementById('invalidPassword').classList.add('invalid');
+    return false;
+  }
+  if (!passwordPattern.test(password)) {
+    document.getElementById('wrongRepeat').innerHTML = `Password must have at least numbers, upper and lowercase letters`;
+    document.getElementById('invalidPassword').classList.add('invalid');
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Displays an error message when the passwords do not match.
+ */
+function displayPasswordMismatchError() {
+  document.getElementById('wrongRepeat').innerHTML = `The passwords don't match`;
+  document.getElementById('invalid').classList.add('invalid');
+}
+
+/**
+ * Checks if the given email is already in use.
+ * @param {string} email - The email to check.
+ * @async
+ * @returns {Promise&lt;boolean>} `true` if the email is in use, otherwise `false`.
+ */
+async function isEmailInUse(email) {
+  await fetchRegisterInfo(); 
+  return registerInfo.email.includes(email);
+}
+
+/**
+ * Displays an error message when the email is already in use or invalid.
+ */
+function displayEmailInUseError() {
+  document.getElementById('wrongRepeat').innerHTML = `Email already in use or invalid!`;
+  document.getElementById('invalidEmail').classList.add('invalid');
+}
+
+/**
+ * Submits the registration information by adding it to `registerInfo` and saving it to Firebase.
+ * @param {Object} registerInfo - The registration information to submit.
+ * @async
+ * @returns {Promise&lt;void>}
+ */
+async function submitRegistration(registerInfo) {
+  addRegisterInfo(registerInfo); 
+  await saveRegisterInfoToFirebase(); 
+  showSuccessMessage();
+}
+
+/**
+ * Displays a success message and redirects to the index page after a delay.
+ */
+function showSuccessMessage() {
+  let successButton = document.getElementById('signedUpCont');
+  successButton.classList.remove('d-none');
+  document.getElementById('signedUp').classList.add('animation');
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 3000);
+}
+
+/**
+ * Initializes event listeners when the DOM content is loaded.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('form').addEventListener('submit', handleFormSubmit);
+  document.getElementById('email').addEventListener('input', resetErrorState);
+  document.getElementById('password').addEventListener('input', resetErrorState);
+  document.getElementById('repeatPassword').addEventListener('input', resetErrorState);
+  document.getElementById('name').addEventListener('input', resetErrorState); 
+});
+
+/**
+ * Toggles the visibility of the password input field between text and password.
+ */
+function showPassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+    document.getElementById('visibility').src = "assets/img/png/visibility.png";
+  } else {
+    x.type = "password";
+    document.getElementById('visibility').src = "assets/img/png/visibility_off.png";
+  }
+}
+
+/**
+ * Resets the error state by clearing error messages and removing invalid classes.
+ */
+function resetErrorState() {
+  document.getElementById('wrongRepeat').innerHTML = ''; 
+  document.getElementById('invalid').classList.remove('invalid');
+  document.getElementById('invalidEmail').classList.remove('invalid');  
+  document.getElementById('invalidName').classList.remove('invalid'); 
+  document.getElementById('invalidPassword').classList.remove('invalid');
+  document.getElementById('policyInvalid').classList.remove('invalid');
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BASE_TASKS_URL">BASE_TASKS_URL</a></li><li><a href="global.html#BASE_URL">BASE_URL</a></li><li><a href="global.html#addContact">addContact</a></li><li><a href="global.html#addGuestLoginListener">addGuestLoginListener</a></li><li><a href="global.html#addInputEventListener">addInputEventListener</a></li><li><a href="global.html#addInputListeners">addInputListeners</a></li><li><a href="global.html#addLoginButtonListener">addLoginButtonListener</a></li><li><a href="global.html#addRegisterInfo">addRegisterInfo</a></li><li><a href="global.html#addRememberMeCheckboxListener">addRememberMeCheckboxListener</a></li><li><a href="global.html#addSubtaaskBoard">addSubtaaskBoard</a></li><li><a href="global.html#addSubtask">addSubtask</a></li><li><a href="global.html#adjustTaskIdsAndUpdate">adjustTaskIdsAndUpdate</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#animateLogoUnder600px">animateLogoUnder600px</a></li><li><a href="global.html#animateOverlayUnder1000px">animateOverlayUnder1000px</a></li><li><a href="global.html#animationCheck">animationCheck</a></li><li><a href="global.html#appendSubtaskHTML">appendSubtaskHTML</a></li><li><a href="global.html#assignContact">assignContact</a></li><li><a href="global.html#categoryColor">categoryColor</a></li><li><a href="global.html#changeColumnDone">changeColumnDone</a></li><li><a href="global.html#changeColumnFeedback">changeColumnFeedback</a></li><li><a href="global.html#changeColumnInProgress">changeColumnInProgress</a></li><li><a href="global.html#changeColumnToDo">changeColumnToDo</a></li><li><a href="global.html#checkEmailAndLogin">checkEmailAndLogin</a></li><li><a href="global.html#checkForDescription">checkForDescription</a></li><li><a href="global.html#checkForHeaderLogo">checkForHeaderLogo</a></li><li><a href="global.html#checkForWidthHeader">checkForWidthHeader</a></li><li><a href="global.html#checkforOpenedDecsripiton">checkforOpenedDecsripiton</a></li><li><a href="global.html#checkforOpenedTitle">checkforOpenedTitle</a></li><li><a href="global.html#chooseCategory">chooseCategory</a></li><li><a href="global.html#clearColumnsBoard">clearColumnsBoard</a></li><li><a href="global.html#clearError">clearError</a></li><li><a href="global.html#clearForm">clearForm</a></li><li><a href="global.html#clearInputAndAddSubtask">clearInputAndAddSubtask</a></li><li><a href="global.html#clearInvalidMessages">clearInvalidMessages</a></li><li><a href="global.html#clearValidationErrors">clearValidationErrors</a></li><li><a href="global.html#clickCount">clickCount</a></li><li><a href="global.html#closeAddTaskBoard">closeAddTaskBoard</a></li><li><a href="global.html#closeAddTaskBoardOnX">closeAddTaskBoardOnX</a></li><li><a href="global.html#closeContactsDropdown">closeContactsDropdown</a></li><li><a href="global.html#closeDialog">closeDialog</a></li><li><a href="global.html#closeDialogEdit">closeDialogEdit</a></li><li><a href="global.html#closeEdit">closeEdit</a></li><li><a href="global.html#closeOpenedTask">closeOpenedTask</a></li><li><a href="global.html#collectData">collectData</a></li><li><a href="global.html#collectDataEdit">collectDataEdit</a></li><li><a href="global.html#collectFormData">collectFormData</a></li><li><a href="global.html#collectNewTaskData">collectNewTaskData</a></li><li><a href="global.html#collectSubtasks">collectSubtasks</a></li><li><a href="global.html#colorIndex">colorIndex</a></li><li><a href="global.html#colors">colors</a></li><li><a href="global.html#completedTasksFeedback">completedTasksFeedback</a></li><li><a href="global.html#completedTasksInProgress">completedTasksInProgress</a></li><li><a href="global.html#completedTasksUrgent">completedTasksUrgent</a></li><li><a href="global.html#completedTaskstoDoCount">completedTaskstoDoCount</a></li><li><a href="global.html#contactWasDeleted">contactWasDeleted</a></li><li><a href="global.html#contactWasEdited">contactWasEdited</a></li><li><a href="global.html#contacts">contacts</a></li><li><a href="global.html#countCompletedTasks">countCompletedTasks</a></li><li><a href="global.html#createAndSaveContact">createAndSaveContact</a></li><li><a href="global.html#createUpdatedTask">createUpdatedTask</a></li><li><a href="global.html#currentTaskId">currentTaskId</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteSubtask">deleteSubtask</a></li><li><a href="global.html#deleteSubtaskAddTask">deleteSubtaskAddTask</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#determinePriority">determinePriority</a></li><li><a href="global.html#displayContactInfo">displayContactInfo</a></li><li><a href="global.html#displayEmailInUseError">displayEmailInUseError</a></li><li><a href="global.html#displayNameError">displayNameError</a></li><li><a href="global.html#displayPasswordMismatchError">displayPasswordMismatchError</a></li><li><a href="global.html#displayPolicyError">displayPolicyError</a></li><li><a href="global.html#displayRequiredPasswordFormat">displayRequiredPasswordFormat</a></li><li><a href="global.html#drag">drag</a></li><li><a href="global.html#dragEnd">dragEnd</a></li><li><a href="global.html#dragEnter">dragEnter</a></li><li><a href="global.html#dragLeave">dragLeave</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editSubtask">editSubtask</a></li><li><a href="global.html#editSubtaskAddTask">editSubtaskAddTask</a></li><li><a href="global.html#editSubtaskBoard">editSubtaskBoard</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#extractFormValues">extractFormValues</a></li><li><a href="global.html#fetchAndSortTasksAddTask">fetchAndSortTasksAddTask</a></li><li><a href="global.html#fetchContacts">fetchContacts</a></li><li><a href="global.html#fetchExistingTasks">fetchExistingTasks</a></li><li><a href="global.html#fetchRegisterInfo">fetchRegisterInfo</a></li><li><a href="global.html#fetchTasks">fetchTasks</a></li><li><a href="global.html#filterTasks">filterTasks</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#generateBigLetterCircle">generateBigLetterCircle</a></li><li><a href="global.html#generateContact">generateContact</a></li><li><a href="global.html#generateContactInfo">generateContactInfo</a></li><li><a href="global.html#generateDeleteButtonDialog">generateDeleteButtonDialog</a></li><li><a href="global.html#generateGreetingHTML">generateGreetingHTML</a></li><li><a href="global.html#generateLetterBox">generateLetterBox</a></li><li><a href="global.html#generateTasks">generateTasks</a></li><li><a href="global.html#getAssignedContacts">getAssignedContacts</a></li><li><a href="global.html#getAssignedContactsAddTask">getAssignedContactsAddTask</a></li><li><a href="global.html#getButtonColor">getButtonColor</a></li><li><a href="global.html#getCategoryAddTask">getCategoryAddTask</a></li><li><a href="global.html#getColumnAddTask">getColumnAddTask</a></li><li><a href="global.html#getContactData">getContactData</a></li><li><a href="global.html#getDataContactEdit">getDataContactEdit</a></li><li><a href="global.html#getDropEventDetails">getDropEventDetails</a></li><li><a href="global.html#getFormAddTask">getFormAddTask</a></li><li><a href="global.html#getGreeting">getGreeting</a></li><li><a href="global.html#getImageSource">getImageSource</a></li><li><a href="global.html#getInputValueAddTask">getInputValueAddTask</a></li><li><a href="global.html#getNextColor">getNextColor</a></li><li><a href="global.html#getPriorityAddTask">getPriorityAddTask</a></li><li><a href="global.html#getSubtasksAddTask">getSubtasksAddTask</a></li><li><a href="global.html#getTask">getTask</a></li><li><a href="global.html#getTaskById">getTaskById</a></li><li><a href="global.html#getTasksFromDataBase">getTasksFromDataBase</a></li><li><a href="global.html#getValidContactsAssignedContacts">getValidContactsAssignedContacts</a></li><li><a href="global.html#getValidContactsBoard">getValidContactsBoard</a></li><li><a href="global.html#goBack">goBack</a></li><li><a href="global.html#handleClick">handleClick</a></li><li><a href="global.html#handleClickOutside">handleClickOutside</a></li><li><a href="global.html#handleClickOutsideEdit">handleClickOutsideEdit</a></li><li><a href="global.html#handleCreateButtonClick">handleCreateButtonClick</a></li><li><a href="global.html#handleEditInputError">handleEditInputError</a></li><li><a href="global.html#handleFormSubmit">handleFormSubmit</a></li><li><a href="global.html#handleLoginError">handleLoginError</a></li><li><a href="global.html#handleLoginResponse">handleLoginResponse</a></li><li><a href="global.html#handleRememberMeChange">handleRememberMeChange</a></li><li><a href="global.html#handleSubtaskAreaDisplayBoard">handleSubtaskAreaDisplayBoard</a></li><li><a href="global.html#hideActions">hideActions</a></li><li><a href="global.html#hideActionsAddTask">hideActionsAddTask</a></li><li><a href="global.html#hideCategory">hideCategory</a></li><li><a href="global.html#hideContactInfo">hideContactInfo</a></li><li><a href="global.html#hideElements">hideElements</a></li><li><a href="global.html#highlightContact">highlightContact</a></li><li><a href="global.html#highlightedContactIndex">highlightedContactIndex</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#initializeTasks">initializeTasks</a></li><li><a href="global.html#initializeTasksNode">initializeTasksNode</a></li><li><a href="global.html#initials">initials</a></li><li><a href="global.html#isContactAssigned">isContactAssigned</a></li><li><a href="global.html#isEmailInUse">isEmailInUse</a></li><li><a href="global.html#isSubtaskEditMode">isSubtaskEditMode</a></li><li><a href="global.html#loadData">loadData</a></li><li><a href="global.html#loadRememberedCredentials">loadRememberedCredentials</a></li><li><a href="global.html#loadTasksFromLocalStorage">loadTasksFromLocalStorage</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#mouseHold">mouseHold</a></li><li><a href="global.html#mouseLeave">mouseLeave</a></li><li><a href="global.html#mouseRelease">mouseRelease</a></li><li><a href="global.html#moveTask">moveTask</a></li><li><a href="global.html#openBoardAddTask">openBoardAddTask</a></li><li><a href="global.html#openDialog">openDialog</a></li><li><a href="global.html#openDialogContact">openDialogContact</a></li><li><a href="global.html#openDialogContactTimeout">openDialogContactTimeout</a></li><li><a href="global.html#openDialogEdit">openDialogEdit</a></li><li><a href="global.html#openDialogEditAnimate">openDialogEditAnimate</a></li><li><a href="global.html#openDialogEditGenerateInitials">openDialogEditGenerateInitials</a></li><li><a href="global.html#openDialogEditPopulateForm">openDialogEditPopulateForm</a></li><li><a href="global.html#openDialogEditShow">openDialogEditShow</a></li><li><a href="global.html#openDialogEditShowGreyBackground">openDialogEditShowGreyBackground</a></li><li><a href="global.html#openDialogEditUpdateBigLetterCircle">openDialogEditUpdateBigLetterCircle</a></li><li><a href="global.html#openDragMobile">openDragMobile</a></li><li><a href="global.html#openTask">openTask</a></li><li><a href="global.html#openedCategoryColor">openedCategoryColor</a></li><li><a href="global.html#registerInfo">registerInfo</a></li><li><a href="global.html#renderAddTaskBoardHtml">renderAddTaskBoardHtml</a></li><li><a href="global.html#renderAssignedContactsHTML">renderAssignedContactsHTML</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderContactsContactInitials">renderContactsContactInitials</a></li><li><a href="global.html#renderContactsGroupedContacts">renderContactsGroupedContacts</a></li><li><a href="global.html#renderContactsHTML">renderContactsHTML</a></li><li><a href="global.html#renderContactsList">renderContactsList</a></li><li><a href="global.html#renderContactsSortedInitials">renderContactsSortedInitials</a></li><li><a href="global.html#renderEditHTML">renderEditHTML</a></li><li><a href="global.html#renderEditPriorityButtons">renderEditPriorityButtons</a></li><li><a href="global.html#renderEditSubtasks">renderEditSubtasks</a></li><li><a href="global.html#renderFilteredTasks">renderFilteredTasks</a></li><li><a href="global.html#renderOpenTaskAssignedContacts">renderOpenTaskAssignedContacts</a></li><li><a href="global.html#renderOpenTaskSubtasks">renderOpenTaskSubtasks</a></li><li><a href="global.html#renderOverallAssignedContactsHTML">renderOverallAssignedContactsHTML</a></li><li><a href="global.html#renderPriority">renderPriority</a></li><li><a href="global.html#renderSubtasks">renderSubtasks</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#renderTasksToColumnsBoard">renderTasksToColumnsBoard</a></li><li><a href="global.html#renderValidContactsBoard">renderValidContactsBoard</a></li><li><a href="global.html#resetDropDownIconsCategory">resetDropDownIconsCategory</a></li><li><a href="global.html#resetErrorState">resetErrorState</a></li><li><a href="global.html#resetInvalidStates">resetInvalidStates</a></li><li><a href="global.html#resetPreviousButton">resetPreviousButton</a></li><li><a href="global.html#resetSubtask">resetSubtask</a></li><li><a href="global.html#returnAddTaskDropCategoryHtml">returnAddTaskDropCategoryHtml</a></li><li><a href="global.html#returnChooseCategoryOverallHTML">returnChooseCategoryOverallHTML</a></li><li><a href="global.html#returnContactsToChooseHTML">returnContactsToChooseHTML</a></li><li><a href="global.html#returnEditPriorityButtonsHTML">returnEditPriorityButtonsHTML</a></li><li><a href="global.html#returnEditSubtaskAddTaskElseHtml">returnEditSubtaskAddTaskElseHtml</a></li><li><a href="global.html#returnEditSubtaskAddtaskIfHtml">returnEditSubtaskAddtaskIfHtml</a></li><li><a href="global.html#returnEditSubtaskHTML">returnEditSubtaskHTML</a></li><li><a href="global.html#returnEditSubtasksHTML">returnEditSubtasksHTML</a></li><li><a href="global.html#returnElseEditSubtaskAddTaskHtml">returnElseEditSubtaskAddTaskHtml</a></li><li><a href="global.html#returnIfEditSubtaskAddTaskHTML">returnIfEditSubtaskAddTaskHTML</a></li><li><a href="global.html#returnOpenEditHTML">returnOpenEditHTML</a></li><li><a href="global.html#returnOpenTaskAssignedContactsHTML">returnOpenTaskAssignedContactsHTML</a></li><li><a href="global.html#returnOpenTaskSubtaskHTML">returnOpenTaskSubtaskHTML</a></li><li><a href="global.html#returnOpenedTaskHtml">returnOpenedTaskHtml</a></li><li><a href="global.html#returnRenderHtml">returnRenderHtml</a></li><li><a href="global.html#returnResetBoardSubtaskHtml">returnResetBoardSubtaskHtml</a></li><li><a href="global.html#returnResetSubtaskHtml">returnResetSubtaskHtml</a></li><li><a href="global.html#returnShowAddTaskSubtaskHTML">returnShowAddTaskSubtaskHTML</a></li><li><a href="global.html#returnShowCategoryOverallHtml">returnShowCategoryOverallHtml</a></li><li><a href="global.html#returnShowContactsOverallHTML">returnShowContactsOverallHTML</a></li><li><a href="global.html#returnShowSubtasksAddTaskHtml">returnShowSubtasksAddTaskHtml</a></li><li><a href="global.html#returnSubtaskHTML">returnSubtaskHTML</a></li><li><a href="global.html#returnWriteSubtaskAddTaskBoardHTML">returnWriteSubtaskAddTaskBoardHTML</a></li><li><a href="global.html#returnWriteSubtaskHTML">returnWriteSubtaskHTML</a></li><li><a href="global.html#returnWriteSubtaskHtmlAddTask">returnWriteSubtaskHtmlAddTask</a></li><li><a href="global.html#saveData">saveData</a></li><li><a href="global.html#saveNewTaskAddTask">saveNewTaskAddTask</a></li><li><a href="global.html#saveRegisterInfoToFirebase">saveRegisterInfoToFirebase</a></li><li><a href="global.html#saveSubtask">saveSubtask</a></li><li><a href="global.html#saveSubtaskAddTask">saveSubtaskAddTask</a></li><li><a href="global.html#saveTask">saveTask</a></li><li><a href="global.html#sendNewTask">sendNewTask</a></li><li><a href="global.html#sendTaskDataToFirebase">sendTaskDataToFirebase</a></li><li><a href="global.html#sendTaskDataToFirebaseAddTask">sendTaskDataToFirebaseAddTask</a></li><li><a href="global.html#setError">setError</a></li><li><a href="global.html#setFutureDate">setFutureDate</a></li><li><a href="global.html#setMinDate">setMinDate</a></li><li><a href="global.html#setSubtaskCompleted">setSubtaskCompleted</a></li><li><a href="global.html#setupProgressBarBoard">setupProgressBarBoard</a></li><li><a href="global.html#showActions">showActions</a></li><li><a href="global.html#showAssignedContacts">showAssignedContacts</a></li><li><a href="global.html#showCategory">showCategory</a></li><li><a href="global.html#showContacts">showContacts</a></li><li><a href="global.html#showContactsToChoose">showContactsToChoose</a></li><li><a href="global.html#showEditContactMobile">showEditContactMobile</a></li><li><a href="global.html#showGreetingMessage">showGreetingMessage</a></li><li><a href="global.html#showInvalidMessage">showInvalidMessage</a></li><li><a href="global.html#showPassword">showPassword</a></li><li><a href="global.html#showSubtasks">showSubtasks</a></li><li><a href="global.html#showSubtasksAddTask">showSubtasksAddTask</a></li><li><a href="global.html#showSuccessMessage">showSuccessMessage</a></li><li><a href="global.html#showSuccessMessageAddTask">showSuccessMessageAddTask</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#startWritingSubtask">startWritingSubtask</a></li><li><a href="global.html#storeFirstAndLastNames">storeFirstAndLastNames</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#submitRegistration">submitRegistration</a></li><li><a href="global.html#subtaskInfos">subtaskInfos</a></li><li><a href="global.html#switchButton">switchButton</a></li><li><a href="global.html#tasks">tasks</a></li><li><a href="global.html#toggleContactAssignment">toggleContactAssignment</a></li><li><a href="global.html#toggleContacts">toggleContacts</a></li><li><a href="global.html#truncate">truncate</a></li><li><a href="global.html#unassignContact">unassignContact</a></li><li><a href="global.html#updateActiveButton">updateActiveButton</a></li><li><a href="global.html#updateGreeting">updateGreeting</a></li><li><a href="global.html#updateInitials">updateInitials</a></li><li><a href="global.html#updateNoTaskMessagesBoard">updateNoTaskMessagesBoard</a></li><li><a href="global.html#updateSubtaskHtml">updateSubtaskHtml</a></li><li><a href="global.html#updateSubtaskProgressBoard">updateSubtaskProgressBoard</a></li><li><a href="global.html#updateTaskIdsAddTask">updateTaskIdsAddTask</a></li><li><a href="global.html#updateTaskInFirebase">updateTaskInFirebase</a></li><li><a href="global.html#updateTaskInFirebaseAndUI">updateTaskInFirebaseAndUI</a></li><li><a href="global.html#updateUI">updateUI</a></li><li><a href="global.html#validateCategorySelection">validateCategorySelection</a></li><li><a href="global.html#validateDateInput">validateDateInput</a></li><li><a href="global.html#validateEditForm">validateEditForm</a></li><li><a href="global.html#validateEmailContact">validateEmailContact</a></li><li><a href="global.html#validateEmailContactEdit">validateEmailContactEdit</a></li><li><a href="global.html#validateForm">validateForm</a></li><li><a href="global.html#validateFormAddTaskBoard">validateFormAddTaskBoard</a></li><li><a href="global.html#validateFormCategory">validateFormCategory</a></li><li><a href="global.html#validateFormTimeout">validateFormTimeout</a></li><li><a href="global.html#validateInputFields">validateInputFields</a></li><li><a href="global.html#validateInputs">validateInputs</a></li><li><a href="global.html#validateName">validateName</a></li><li><a href="global.html#validateNameContact">validateNameContact</a></li><li><a href="global.html#validateNameContactEdit">validateNameContactEdit</a></li><li><a href="global.html#validatePasswordAndLogin">validatePasswordAndLogin</a></li><li><a href="global.html#validatePhoneContact">validatePhoneContact</a></li><li><a href="global.html#validatePhoneContactEdit">validatePhoneContactEdit</a></li><li><a href="global.html#validateSubtaskInput">validateSubtaskInput</a></li><li><a href="global.html#writeSubtask">writeSubtask</a></li><li><a href="global.html#writeSubtaskAddTask">writeSubtaskAddTask</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Aug 13 2024 21:44:45 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

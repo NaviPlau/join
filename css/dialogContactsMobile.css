@@ -1,0 +1,193 @@
+@media (max-width: 1300px){
+  #dialog-contacts, #dialog-edit{
+    width: 95vw;
+    height: 60vh;
+}
+.dialog-left {
+  width: 40vw;
+  height: 60vh;
+  padding: 33px 24px 33px 24px;
+}
+.dialog-left h2{
+  margin-top: 30px;
+  font-size: 54px;
+}
+.dialog-text {
+  font-size: 24px;
+}
+
+.dialog-right {
+  width: 55vw;
+}
+}
+@media (max-width: 1300px) and (max-height:750px){
+  #dialog-contacts, #dialog-edit{
+    height: 90vh;
+  }
+  .dialog-left{
+    height: 90vh;
+  }
+  .input-fields-contacts{
+    height: fit-content;
+  }
+}
+@media (max-width: 1300px) and (max-height:500px){
+  #dialog-contacts, #dialog-edit{
+    height: 100vh;
+  }
+  .dialog-left{
+    height: 100vh;
+  }
+  .close-cross{
+    right: 16px;
+    top: 10px;
+  }
+}
+
+@media (max-width: 1000px){
+  #dialog-contacts, #dialog-edit{
+    flex-direction: column;
+    width: 100vw;
+    height: 90vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    align-items: center;
+    background-color: rgba(0,0,0,0.2);
+    justify-content: center;
+    
+}
+.input-fields-contacts{
+  height: fit-content;
+}
+.dialog-left {
+  width: 100vw;
+  height: 40%;
+  padding: 33px 24px 33px 24px;
+  border-top-left-radius: 30px; 
+  border-top-right-radius: 30px; 
+  border-bottom-left-radius: 0px; 
+  border-bottom-right-radius: 0px;
+}
+.dialog-left h2 {
+  margin-top: 0px;
+  font-size: 54px;
+}
+.dialog-right {
+  border-top-left-radius: 0px; 
+  border-top-right-radius: 0px;
+  width: 100vw;
+  height: 60%;
+  padding-top: 0px;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+.unknown-user , #bigLetterCircle{
+  position: absolute;
+  margin-top: -55vh;
+}
+.dialog-content-right .close-cross{
+  content: url('../assets/img/png/add.png');
+  width: 30px;
+  height: 30px;
+  rotate: 45deg;
+}
+.dialog-content-right .close-cross:hover{
+  background-color: gray;
+  border-radius: 50%;
+}
+.logo-dialog{
+  display: none;
+}
+}
+
+@media(max-width:500px){
+  .button-contacts {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: fit-content;
+    gap: 10px;
+    width: 90vw;
+}
+.button-contacts button{
+  height: fit-content;
+  padding: 8px;
+}
+.input-fields-contacts{
+  width: 90vw;
+  height: fit-content;
+}
+.input-fields-contacts input{
+  background-position: 80vw;
+}
+#succesfullyCreated{
+  transform: translate(-60%, -60%);
+  width: 300px;
+  position: fixed;
+  top: 60%;
+}
+
+}
+
+@media(max-width:400px){
+  .dialog-left{
+    padding: 10px 20px;
+  }
+  .dialog-left h2{
+    font-size: 44px;
+  }
+  .dialog-left span{
+    font-size: 20px;
+  }
+}
+@media (max-height:750px)and (max-width:1000px){
+    .dialog-right{
+      justify-content: initial;
+      height: 100%;
+    }
+    .unknown-user, #bigLetterCircle{
+      position: absolute;
+      margin-top: -50px;
+    }
+    .dialog-content-right{
+      padding-top: 80px;
+    }
+}
+@media  (max-height:550px) and (max-width:1000px){
+  .dialog-text, .dialo-text-seperator{
+    display: none;
+  }
+  .dialog-left h2{
+    font-size: 36px;
+  }
+  .dialog-left{
+    padding: 20px 10px 20px 10px;
+    align-items: center;
+  }
+  .unknown-user, #bigLetterCircle{
+    display: none;
+  }
+  .dialog-right{
+    padding-top: 10px;
+  }
+  .dialog-content-right{
+    padding: 0px;
+  }
+  .input-fields-contacts{
+    gap: 10px;
+  }
+  .input-fields-contacts input{
+    padding: 8px 15px;
+  }
+  .button-contacts button{
+    height: fit-content;
+    padding: 8px;
+  }
+  .button-contacts{
+    height: fit-content;
+  }
+}
+
+
+

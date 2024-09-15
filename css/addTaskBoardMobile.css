@@ -1,0 +1,140 @@
+@media (max-width: 1170px ){
+  form{
+    gap: 16px;
+  }
+  .formLeft , .addSubtaskAddBoard, #newSubtasksAddTask, .contacts, #categories{
+    width: 360px;
+  }
+  .buttonsSection{
+    margin-top: 110px !important;
+    padding-right: 0px;
+  }
+  .addTask textarea{
+    height: 80px;
+  }
+}
+@media (max-width: 850px){
+  form{
+    flex-direction: column;
+    align-items: center;
+  }
+  .assignedContacts{
+    position: relative;
+    margin-top: 0px;
+  }
+  .addSubtaskAddBoard, #newSubtasksAddTask, .contacts, #categories{
+    width: 80vw;
+  }
+  #categories{
+    position: relative;
+    top: 0;
+    margin-top: 20px;
+  }
+  .formLeft{
+    width: 80vw
+  }
+  .addTask{
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
+  
+}
+
+@media (max-width: 700px){
+  .boardAddTaskTitle img{
+    margin-right: 20px;
+  }
+  .boardAddTaskTitle h1{
+    font-size: 48px;
+    margin-left: 1vw;
+  }
+  .addTask{
+    width: 99%;
+    padding: 40px 10px;
+  }
+  form{
+    width: 95vw;
+  }
+  .addSubtaskAddBoard, #newSubtasksAddTask, .contacts, #categories{
+    width: 90vw;
+  }
+  
+  .formLeft{
+    width: 90vw;
+  }
+  .buttonsSection{
+    flex-direction: column-reverse;
+    gap: 10px;
+    padding-right: 0px;
+    align-items: center;
+  }
+  .prioButton{
+    width: fit-content;
+  }
+  .buttonCenter{
+    padding: 8px;
+  }
+  .createButton, .clear{
+    width: fit-content;
+    height: fit-content;
+  }
+}
+
+
+@media (max-width: 360px){
+  .addTask{
+    width: 100vw;
+    padding: 40px 0px;
+  }
+  form{
+    width: 100vw;
+  }
+  .formLeft{
+    width: 99vw;
+  }
+  .addSubtaskAddBoard, #newSubtasksAddTask, .contacts, #categories{
+    width: 99vw;
+  }
+
+}
+
+@media (max-height: 800px){
+  
+  
+  .formLeft{
+    width: 95vw;
+  }
+  .addSubtaskAddBoard, #newSubtasksAddTask, .contacts, #categories{
+    width: 95vw;
+  }
+  form{
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #categories{
+    position: relative;
+    top: 0;
+    margin-top: 20px;
+  }
+  
+  .addTask{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
+  
+}
+
+

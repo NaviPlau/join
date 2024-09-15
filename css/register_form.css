@@ -1,0 +1,322 @@
+
+
+a {
+  text-decoration: none;
+  color: var(--policy);
+}
+
+body {
+  background-color: var(--background);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  font-family: "inter", Arial, sans-serif;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+
+
+.logo {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo img {
+  width: 100px;
+  height: 120px;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.register {
+  display: flex;
+  margin-top: 70px;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 0px 88px 48px 88px;
+  border-radius: 30px;
+  gap: 32px;
+}
+
+
+.policy {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+input {
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.signUp {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.separator {
+  background-color: var(--blue);
+  height: 3px;
+  width: 150px;
+}
+
+.backArrow {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  left: -200px;
+  bottom: -80px;
+  margin-top: -32px;
+  border-radius: 50%;
+}
+
+.backArrow:hover {
+  background-color: var(--border);
+  cursor: pointer;
+}
+
+::placeholder {
+  color: var(--border);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+h1 {
+  font-size: 61px;
+  margin: 0px;
+}
+
+.input {
+  width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 21px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.input input {
+  width: 100%;
+  height: 150%;
+}
+
+.input img:hover {
+  cursor: pointer;
+}
+
+.input:hover {
+  border: 1px solid var(--blue);
+}
+
+.check {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 4px;
+}
+
+.check input:hover {
+  cursor: pointer;
+}
+
+.check span {
+  display: flex;
+  align-items: center;
+}
+
+.check a {
+  color: var(--blue);
+  padding: 4px;
+  box-sizing: border-box;
+  width: 150px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.check a:hover {
+  text-decoration: underline var(--blue);
+  font-weight: 600;
+}
+
+.check:hover input {
+  box-shadow: 0px 0px 6px 0px var(--gray);
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+button {
+  background-color: var(--gray);
+  padding: 15px 24px;
+  color: white;
+  border-radius: 8px;
+  font-size: 21px;
+  width: 130px;
+  border: none;
+}
+
+.policy {
+  display: flex;
+  gap: 32px;
+  position: fixed;
+  bottom: 5px;
+}
+
+.policy a:hover {
+  color: var(--blue);
+  transform: scale(1.1);
+}
+
+button:hover {
+  background-color: var(--blue);
+  cursor: pointer;
+  transition: 200ms;
+}
+
+span {
+  color: var(--policy);
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+
+#wrongRepeat {
+  display: flex;
+  width: 100%;
+  height: 5px;
+  font-size: 14px;
+  color: red;
+}
+
+.invalid {
+  border: 2px solid red;
+}
+
+.signedUp {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+
+.signedUp button {
+  width: 400px;
+}
+
+.animation {
+  animation: slideUp 300ms ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100vh);
+    /* Start from below the viewport */
+
+  }
+
+  to {
+    transform: translateY(0);
+    /* End at the normal position */
+  }
+}
+
+
+#signedUp {
+  background-color: var(--gray);
+  padding: 15px 24px;
+  color: white;
+  border-radius: 8px;
+  font-size: 21px;
+  width: 400px;
+  text-align: center;
+}
+
+@media screen and (max-width: 1068px){
+ 
+  .logo img{
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .logo img{
+    margin-top: 30px;
+    width: 64px;
+    height: 78px;
+  }
+  .register{
+    padding: 0px 30px 48px 30px;
+    margin-top: 60px;
+    width: 80vw;
+  }
+  .input{
+    width: 320px;
+  }
+  .check{
+    width: 110%;
+  }
+  .logoLogIn img {
+    width: 64px;
+    height: 78px;
+  }
+ .backArrow{
+  left: -150px;
+ }
+  
+}
+@media screen and (max-width: 400px){
+  .backArrow{
+    left: -135px;
+  }
+  .input{
+    width: 85%;
+  }
+
+}
+
+@media(max-height: 799px){
+  .policy {
+    display: flex;
+    gap: 32px;
+    position: relative;
+    margin-top: 30px;
+  }
+}
+
+
+
+.d-none {
+  display: none;
+}

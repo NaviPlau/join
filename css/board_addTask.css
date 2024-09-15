@@ -1,0 +1,160 @@
+.addTask {
+  background-color: var(--background);
+  padding: 40px;
+  border-radius: 40px;
+  height: fit-content;
+  width: fit-content;
+}
+
+.boardAddTaskTitle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.boardAddTaskTitle img {
+  width: 20px;
+  height: 20px;
+}
+
+.boardAddTaskTitle img:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: var(--border);
+  border-radius: 10px;
+}
+
+.addTask input {
+  border: none;
+}
+
+.addTask textarea {
+  border: none;
+  padding: 0;
+}
+
+/* Define the animation */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.slide-in {
+  animation: slideInFromLeft 0.45s ease-out forwards;
+}
+
+.slideOut {
+  animation: slideOut 1s ease-out forwards;
+}
+
+
+
+#categories {
+  top: 440px;
+  position: absolute;
+  z-index: 44;
+  width: 440px;
+  background-color: white;
+}
+
+.openedDropDown {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  background-color: white;
+  margin-top: -35px;
+  border-radius: 10px;
+  border: solid 0.5px var(--border);
+}
+
+.dropUpImg {
+  height: 8px;
+  width: 12px;
+  margin-right: 16px;
+}
+
+.contacts {
+  background-color: white;
+  height: 200px;
+  overflow-y: scroll;
+  position: absolute;
+  width: 440px;
+  margin-top: 68px;
+  z-index: 44;
+  border-radius: 10px;
+  border: 0.5px solid var(--border);
+}
+
+.assignedContacts {
+  display: flex;
+  position: absolute;
+  margin-top: 90px;
+}
+
+.addSubtaskAddBoard {
+  box-sizing: border-box;
+  display: flex;
+  background-color: white;
+  padding: 12px;
+  border-radius: 10px;
+  border: 0.5px solid var(--border);
+  width: 440px;
+}
+
+.addSubtaskAddBoard {
+  cursor: pointer;
+}
+
+#newSubtasksAddTask {
+  width: 440px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  max-height: 80px;
+  overflow-y: scroll;
+  z-index: 33;
+  margin-top: 90px;
+  scrollbar-width: none;
+  list-style-type: none;
+  padding: 0;
+}
+
+.subtaskIconsAddTask {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.separator{
+  width: 1px;
+  background-color: var(--blue);
+}
+
+.sucessMessageAddTask {
+  background-color: var(--gray);
+  width: fit-content;
+  color: white;
+  padding: 16px;
+  font-size: 24px;
+  border-radius: 10px;
+}

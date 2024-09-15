@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/img/png/favicon.png" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/contacts.css" />
+    <link rel="stylesheet" href="css/contactsMobile.css">
+    <link rel="stylesheet" href="css/dialog-contacts.css" />
+    <link rel="stylesheet" href="css/dialogContactsMobile.css">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="js/contacts-validate.js"></script>
+    <script src="js/include.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/htmlContacts.js"></script>
+    <script src="js/contacts-dialog-response.js"></script>
+    <script src="./js/header.js"></script>
+    <title>My Contacts</title>
+  </head>
+  <body>
+    <div class="d-flex">
+      <div w3-include-html="Templates/sidebar.html"></div>
+      <div class="content">
+        <div w3-include-html="Templates/header.html"></div>
+        <div class="d-flex">
+          <div class="contact-box">
+            <button onclick="openDialog()" class="add-contact">
+              Add new contact
+              <img src="./assets/img/png/person_add.png" alt="" />
+            </button>
+            <div id="contactList"></div>
+          </div>
+          <div class="rightInfoBox">
+            <div class="text-box">
+              <div class="headerContacts">
+                <h1>Contacts</h1>
+                <img class="closeContactInfo" onclick="hideContactInfo()" src="assets/img/png/arrow-left-line.png" alt="">
+              </div>
+              
+              <div class="text-seperator"></div>
+              <span class="info-text">Better with a Team</span>
+            </div>
+            <div class="contacts-info-box"></div>
+            <div onclick="showEditContactMobile()" class="editContactPoints">
+              <li></li>
+              <li></li>
+              <li></li>
+            </div> 
+          </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <dialog id="dialog-contacts">
+      <div class="dialog-left">
+        <img
+          class="logo-dialog"
+          src="./assets/img/png/Join logo vector.png"
+          alt=""
+        />
+        <h2>Add contact</h2>
+        <span class="dialog-text">Tasks are better with a team !</span>
+        <div class="dialo-text-seperator"></div>
+      </div>
+      <div class="dialog-right">
+        <img
+          class="unknown-user"
+          src="./assets/img/png/unknown-user.png"
+          alt=""
+        />
+        <div class="dialog-content-right">
+          <img
+            onclick="closeDialog()"
+            class="close-cross"
+            src="/assets/img/svg/close.svg"
+            alt=""/>
+          <div class="input-fields-contacts">
+            <input id="name" class="input-name" type="text" maxlength="20" placeholder="Firstname Lastname" />
+            <input id="email" class="input-email" type="email" placeholder="Email" />
+            <input id="phone" class="input-phone" type="number" min="0" placeholder="Phone" />
+            <div class="button-contacts">
+              <button onclick="closeDialog()" class="button-cancel">
+                Cancel
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="close-icon-button"
+                    d="M7.06917 7.00008L12.3122 12.2431M1.82617 12.2431L7.06917 7.00008L1.82617 12.2431ZM12.3122 1.75708L7.06817 7.00008L12.3122 1.75708ZM7.06817 7.00008L1.82617 1.75708L7.06817 7.00008Z"
+                    stroke="#2A3647"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button onclick="validateForm()" class="button-create">
+                Create contact
+                <img
+                  class="check-icon-button"
+                  src="./assets/img/png/check.png"
+                  alt="check"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="dialog-edit">
+      <div class="dialog-left">
+        <img
+          class="logo-dialog"
+          src="./assets/img/png/Join logo vector.png"
+          alt=""
+        />
+        <h2>Edit contact</h2>
+        <div class="dialo-text-seperator"></div>
+      </div>
+      <div  class="dialog-right">
+        <div id="bigLetterCircle">
+          
+        </div>
+        <div class="dialog-content-right">
+          <img
+            onclick="closeDialogEdit()"
+            class="close-cross"
+            src="assets/img/svg/close.svg"
+            alt=""
+          />
+          <div class="input-fields-contacts">
+            <input id="inputEditName" class="input-name" type="text"  maxlength="20" placeholder="Firstname Lastname" />
+            <input id="inputEditEmail" class="input-email" type="email" placeholder="Email" />
+            <input id="inputEditPhone" class="input-phone" type="number" min="0" placeholder="Phone" />
+            <div id="button-edit-dialog" class="button-delete-save">
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    
+    <dialog id="succesfullyCreated" >
+      
+        <Span id="succesfullyDeleted">Contacts succesfully created</Span>
+      
+    </dialog>
+
+    <div
+      onclick="closeDialog(), closeDialogEdit()"
+      id="grey-background"
+      class="grey-background hidden"></div>
+    
+  </body>
+</html>

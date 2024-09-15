@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/img/png/favicon.png" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/board2.css">
+    <link rel="stylesheet" href="css/board_addTask.css">
+    <link rel="stylesheet" href="./css/sharedStyle.css">
+    <link rel="stylesheet" href="css/boardMobile.css">
+    <link rel="stylesheet" href="css/boardMobileOpenedEditTask.css">
+    <link rel="stylesheet" href="css/addTaskBoardMobile.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="./js/header.js"></script>
+    <script src="js/include.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/addTask-board-overall.js"></script>
+    <script src="js/board-render-tasks.js"></script>
+    <script src="js/board-drag.js"></script>
+    <script src="js/board-open-task.js"></script>
+    <script src="js/board-edit-task.js"></script>
+    <script src="js/board-firebase.js"></script>
+    <script src="js/board-validate-clear-create.js"></script>
+    <script src="js/board-addTask-subtasks.js"></script>
+    <script src="js/board-edit-task-data.js"></script>
+    <script src="js/addTask-board-overall-html.js"></script>
+    <script src="js/board-return-html.js"></script>
+    <script src="js/board-addtask-html.js"></script>
+    <title>My Board</title>
+  </head>
+  <body onload="getTasksFromDataBase(); loadTasksFromLocalStorage()">
+    <div id="openedTaskContainer" class="openedTaskContainer d-none"  ></div>
+    <div id="editTaskContainer" class="openedTaskContainer d-none" ></div>
+    <div id="addTaskContainer" class="openedTaskContainer d-none"></div>
+    <div class="openedTaskContainer d-none" id="successContainer">
+      <div class="sucessMessageAddTask" id="sucessMessageAddTask">  </div>
+    </div>
+      
+    
+    <div class="d-flex">
+      <div w3-include-html="Templates/sidebar.html"></div>
+      <div class="includedHeader">
+        <div w3-include-html="Templates/header.html" ></div>
+      
+        
+        <div class="boardContent" >
+          
+          
+          
+          <section name="boardHeader" class="boardHeader">
+            <div class="contentHeader">
+              <h1>Board</h1>
+              <div class="inputarea">
+                <div class="input">
+                  <input type="text" id="search" oninput="filterTasks()">
+                  <img src="assets/img/png/search (1).png" alt="" onclick="filterTasks()">
+                </div>
+                <button onclick="openBoardAddTask('toDo')">Add task  <img src="assets/img/png/add.png" alt=""></button>
+              </div>
+            </div>
+            <div class="contentHeaderMobile">
+              <div class="addMobile">
+                <h1>Board</h1>
+                <button onclick="openBoardAddTask('toDo')"><img src="assets/img/png/add.png" alt=""></button>
+              </div>
+              <div class="inputarea">
+                <div class="input">
+                  <input type="text" id="searchMobile" oninput="filterTasks()">
+                  <img src="assets/img/png/search (1).png" alt="" onclick="filterTasks()">
+                </div>
+              </div>
+            </div>
+           
+          </section >
+          <section class="taskArea">
+            <div class="column">
+              <div class="listheader">
+                <span>To do</span>
+                <div class="image" onclick="openBoardAddTask('toDo')" ><img  src="assets/img/png/plus button (1).png" alt=""></div>
+              </div>
+              <div class="taskColumn dragTarget" id="toDo" 
+                  ondrop="drop(event)" 
+                  ondragover="allowDrop(event)"
+                  ondragenter="dragEnter(event)"
+                  ondragleave="dragLeave(event)">
+                  <div class="noTask">No tasks To do</div>
+              </div>
+            </div>
+            
+            <div class="column">
+              <div class="listheader">
+                <span>In progress</span>
+                <div class="image" onclick="openBoardAddTask('inProgress')"><img  src="assets/img/png/plus button (1).png" alt=""></div>
+              </div>
+              <div class="taskColumn dragTarget" id="inProgress" 
+                  ondrop="drop(event)" 
+                  ondragover="allowDrop(event)"
+                  ondragenter="dragEnter(event)"
+                  ondragleave="dragLeave(event)">
+                  <div class="noTask">No tasks in progress</div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="listheader">
+                <span>Await feedback</span>
+                <div class="image" onclick="openBoardAddTask('awaitFeedback')"><img  src="assets/img/png/plus button (1).png" alt=""></div>
+              </div class="listheader"> 
+              <div class="taskColumn dragTarget" id="awaitFeedback" 
+                  ondrop="drop(event)" 
+                  ondragover="allowDrop(event)"
+                  ondragenter="dragEnter(event)"
+                  ondragleave="dragLeave(event)">
+                  <div class="noTask">No tasks awaiting feedback</div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="listheader">Done</div>
+              <div class="taskColumn dragTarget" id="done" 
+                  ondrop="drop(event)" 
+                  ondragover="allowDrop(event)"
+                  ondragenter="dragEnter(event)"
+                  ondragleave="dragLeave(event)">
+                  <div class="noTask">No tasks done</div>
+              </div>
+            </div>
+        </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

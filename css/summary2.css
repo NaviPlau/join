@@ -1,0 +1,395 @@
+.awaitingFeedback:hover {
+    background-color: #2A3647;
+    color: white;
+    transition: transform 0.2s ease;
+    transform: scale(1.02);
+}
+
+.tasksInProgress:hover {
+    background-color: #2A3647;
+    color: white;
+    transition: transform 0.2s ease;
+    transform: scale(1.02);
+}
+
+.tasksInBoard:hover {
+    background-color: #2A3647;
+    color: white;
+    transition: transform 0.2s ease;
+    transform: scale(1.02);
+}
+
+.urgentDate:hover {
+    background-color: #2A3647;
+    color: white;
+    transition: transform 0.2s ease;
+    transform: scale(1.02);
+    transform-origin: left center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.toDo:hover {
+    background-color: #2A3647;
+    color: white;
+    transition: transform 0.1s ease;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.date:hover {
+    color: white;
+}
+
+.done:hover {
+    background-color: #2A3647;
+    color: white;
+    transition: transform 0.2s ease;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toDo1 img.hover,
+.done1 img.hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.toDo:hover .toDo1,
+.done:hover .done1 {
+    background-color: white;
+}
+
+.toDo:hover .toDo1 img.default,
+.done:hover .done1 img.default {
+    opacity: 0;
+}
+
+.toDo:hover .toDo1 img.hover,
+.done:hover .done1 img.hover {
+    opacity: 1;
+}
+
+.hover-effect:hover .urgentDate,
+.hover-effect:hover .urgent,
+.hover-effect:hover .column,
+.hover-effect:hover .seperatorDate,
+.hover-effect:hover .dateUp,
+.hover-effect:hover .date,
+.hover-effect:hover .upcoming {
+    color: white;
+}
+
+.toDo:hover,
+.done:hover {
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.greeting-container {
+    display: none;
+    /* Standardmäßig ausgeblendet */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+
+    .greetBox1 {
+        height: fit-content;
+        width: fit-content;
+        text-align: left;
+    }
+
+    .greetBox {
+        width: fit-content;
+
+    }
+
+    .greetBox2 {
+        width: fit-content;
+    }
+
+    .overDynamic {
+        margin-left: 40px;
+    }
+
+    .overGreetBox {
+        margin-left: 40px;
+    }
+
+    .seperatorBox {
+        margin-left: 40px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .overSeperatorBox {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .greetBox1 {
+        font-size: 32px;
+    }
+
+    .greetBox2 {
+        font-size: 44px;
+    }
+}
+
+@media (max-width: 1068px) {
+    .overSeperatorBox {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #content {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 160px);
+        justify-content: space-evenly;
+    }
+
+    .dynamic {
+        gap: 20px;
+    }
+
+    .seperatorDate {
+        height: 80px;
+    }
+}
+
+@media(max-width: 850px) {
+    .overDynamic {
+        margin: 0px;
+        padding-bottom: 10px;
+    }
+
+    .rowInnerContent {
+        flex-direction: column;
+    }
+
+    .overGreetBox {
+        display: none;
+    }
+
+    .sepLeft {
+        font-size: 48px;
+        width: fit-content;
+    }
+
+    .sepRight {
+        width: fit-content;
+    }
+
+    .seperatorBox {
+        margin-left: 0px;
+
+    }
+
+    .greeting-container {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 160px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--background);
+        z-index: 9998;
+        text-align: center;
+    }
+
+    .greeting {
+        width: 274px;
+        font-family: 'Inter', Arial, sans-serif;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 43.2px;
+        color: black;
+        opacity: 0;
+        animation: fadeInOut 2s ease-in-out forwards;
+    }
+
+    .greeting-name {
+        width: 274px;
+        font-family: 'Inter', Arial, sans-serif;
+        font-weight: 700;
+        font-size: 47px;
+        line-height: 56.4px;
+        color: var(--blue);
+        margin-top: 10px;
+        opacity: 0;
+        animation: fadeInOut 2s ease-in-out forwards;
+        animation-delay: 0.25s;
+    }
+
+}
+
+@media(max-width: 650px) {
+    .seperatorBox {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        height: fit-content;
+        justify-content: center;
+    }
+
+    .seperator {
+        height: 1px;
+        width: 200px;
+    }
+
+    .done {
+        height: fit-content;
+        width: fit-content;
+        box-sizing: border-box;
+        padding: 20px 30px;
+
+    }
+
+    .dynamic1 {
+        gap: 20px;
+    }
+
+    .dynamic1 .toDo {
+        width: fit-content;
+        height: fit-content;
+        padding: 20px 40px;
+        gap: 18px;
+    }
+
+    .dynamic a {
+        width: fit-content;
+    }
+
+    .dynamic {
+        align-items: center;
+    }
+
+    .urgentDate {
+        display: flex;
+        width: fit-content;
+        height: fit-content;
+        align-items: center;
+        padding: 30px 40px;
+        gap: 16px;
+        box-sizing: border-box;
+        color: black;
+    }
+
+    .done1,
+    .toDo1,
+    .toDoRed {
+        width: 60px;
+        height: 60px;
+    }
+
+    .done1 img,
+    .toDo1 img,
+    .urgent img {
+        width: 24px;
+        height: 18px;
+    }
+
+    .taskFontSize,
+    .leftToDo {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .tasksInBoard,
+    .tasksInProgress,
+    .awaitingFeedback {
+        width: fit-content;
+        height: fit-content;
+        padding: 20px 10px;
+        min-width: 100px;
+    }
+
+    .tasksRow {
+        gap: 30px;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .dynamic1 {
+        gap: 16px;
+    }
+
+    .dynamic1 .toDo {
+        width: fit-content;
+        height: fit-content;
+        padding: 15px 20px;
+        gap: 18px;
+    }
+
+    .done {
+        padding: 15px 20px;
+    }
+
+    .date,
+    .dateUp,
+    .upcoming {
+        width: fit-content;
+    }
+
+    .urgentDate {
+        padding: 15px 20px;
+        gap: 8px;
+    }
+
+    .done1,
+    .toDo1,
+    .toDoRed {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tasksInBoard,
+    .tasksInProgress,
+    .awaitingFeedback {
+        padding: 10px 10px;
+        min-width: 70px;
+    }
+
+    .taskFontSize,
+    .leftToDo {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .taskFontSizeLower {
+        font-size: 16px;
+    }
+
+    .tasksRow {
+        gap: 18px;
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="assets/img/png/favicon.png">
+  <title>Register</title>
+  <link rel="stylesheet" href="css/register_form.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/register.js"></script>
+  
+</head>
+<body onload="fetchRegisterInfo()">
+  <section class="logo"><img src="assets/img/png/Capa 2.png" alt=""></section>
+  <section class="register">
+    <a href="index.html"><img class="backArrow" src="assets/img/png/arrow-left-line.png" alt=""></a>
+    <div class="signUp">
+      <h1>Sign up</h1>
+      <div class="separator"></div>
+    </div>
+    <form id="registrationForm">
+      <div class="input" id="invalidName">
+        <input type="text" id="name"  placeholder="Firstname Lastname">
+        <img class="icon" src="assets/img/png/person.png" alt="">
+      </div>
+      <div class="input" id="invalidEmail">
+        <input type="email" id="email" placeholder="E-mail">
+        <img class="icon" src="assets/img/png/mail.png" alt="">
+      </div>
+      <div class="input" id="invalidPassword">
+        <input type="password" id="password" placeholder="Password">
+        <img class="icon" id="visibility" onclick="showPassword()" src="assets/img/png/visibility_off.png" alt="">
+      </div>
+      <div class="input" id="invalid">
+        <input type="password"  id="repeatPassword" placeholder="Repeat password" >
+        <img class="icon"  src="assets/img/png/lock.png" alt="">
+      </div>
+      <div id="wrongRepeat"></div>
+      <div class="check" id="policyInvalid">
+        <input type="checkbox" id="acceptPolicy" >
+        <span> I accept the<a href="privacy_policy.html">Privacy policy</a></span>
+      </div>
+      <button type="submit">Sign up</button>
+    </form>
+  </section>
+  <section class="policy">
+    <a href="privacy_policy.html">Privacy policy</a>
+    <a href="legal_notice.html">Legal notice</a>
+  </section>
+
+  <div class="signedUp d-none" id="signedUpCont">
+    <div id="signedUp">You signed up successfully</div>
+  </div>
+</body>
+</html>

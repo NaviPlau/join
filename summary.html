@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="assets/img/png/favicon.png">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/sidebar.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/summary.css">
+  <link rel="stylesheet" href="./css/summary2.css">
+  <script src="./js/include.js"></script>
+  <script src="./js/header.js"></script>
+  <script src="./js/summary.js"></script>
+  <title>Summary</title>
+</head>
+
+<body>
+  <div class="rowInnerContent">
+    <div w3-include-html="Templates/sidebar.html"></div>
+    <div class="content">
+      <div w3-include-html="Templates/header.html"></div>
+      <div id="greeting-container" class="greeting-container">
+        <div id="greeting" class="greeting"></div>
+        <div id="greeting-name" class="greeting-name"></div>
+      </div>
+      <div id="main-content">
+        <div id="content">
+          <div class="overSeperatorBox">
+            <div class="seperatorBox">
+              <div class="sepLeft">Join 360</div>
+              <div class="seperator"></div>
+              <div class="sepRight">Key Metrics at a Glance</div>
+            </div>
+          </div>
+          <div class="rowInnerContent">
+            <div class="overDynamic">
+              <div class="dynamic">
+                <div class="dynamic1">
+                  <a class="linkNone hover-effect" href="board.html">
+                    <div class="toDo">
+                      <div class="toDo1">
+                        <img class="default" src="assets/img/png/edit.png" alt="default">
+                        <img class="hover" src="assets/img/png/editBlue.png" alt="hover">
+                      </div>
+                      <div class="bothToDo tasksCenter">
+                        <div class="leftToDo" id="toDoCount"></div>
+                        <div class="rightToDo">To-do</div>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="linkNone hover-effect" href="board.html">
+                    <div class="done">
+                      <div class="done1">
+                        <img class="default" src="assets/img/png/check vector.png" alt="default">
+                        <img class="hover" src="assets/img/png/checkBlue.png" alt="hover">
+                      </div>
+                      <div class="bothToDo tasksCenter">
+                        <div class="taskFontSize" id="doneCount"></div>
+                        <div class="rightToDo">Done</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <a class="linkNone hover-effect" href="board.html">
+                  <div class="urgentDate">
+                    <div class="urgent">
+                      <div class="toDoRed justifyCenter"><img src="assets/img/png/Prio alta.png" alt=""></div>
+                      <div class="column">
+                        <div class="leftToDo justifyCenter" id="urgentCount"></div>
+                        <div class="rightToDo">Urgent</div>
+                      </div>
+                    </div>
+                    <div class="seperatorDate"></div>
+                    <div class="dateUp">
+                      <div class="date">October 16, 2022</div>
+                      <div class="upcoming">Upcoming Deadline</div>
+                    </div>
+                  </div>
+                </a>
+                <div>
+                  <div class="tasksRow">
+                    <a class="linkNone" href="board.html">
+                      <div class="tasksInBoard">
+                        <div class="tasksCenter">
+                          <div id="board" class="taskFontSize"></div>
+                          <div class="taskFontSizeLower">Tasks in<br>Board</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="linkNone" href="board.html">
+                      <div class="tasksInProgress">
+                        <div class="tasksCenter">
+                          <div class="taskFontSize" id="inProgress"></div>
+                          <div class="taskFontSizeLower">Tasks In<br>Progress</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="linkNone" href="board.html">
+                      <div class="awaitingFeedback">
+                        <div class="tasksCenter">
+                          <div class="taskFontSize" id="awaitFeedback"></div>
+                          <div class="taskFontSizeLower">Awaiting<br>Feedback</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="overGreetBox">
+              <div class="greetBox">
+                <div class="greetBox1">Good morning,</div>
+                <div class="greetBox2" id="greetName"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</body>
+
+</html>

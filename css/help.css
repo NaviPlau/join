@@ -1,0 +1,128 @@
+body{
+    margin: 0px;
+    visibility: hidden;
+}
+
+.d-flex{
+    display: flex;
+}
+
+
+h1{
+    height: 73px;
+    margin: 0px;
+    font-size: 61px;
+    font-weight: 700;
+}
+
+h2{
+    margin: 0px;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0px;
+}
+
+tbody{
+    display: flex;
+    gap: 35px;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+tr{
+    display: flex;
+    gap: 35px;
+}
+
+
+.content-help{
+    display: flex;
+    height: calc(100vh - 166px);
+    max-width: 1600px;
+    overflow: scroll;
+    margin-top: 35px;
+    padding-left: 96px;
+    padding-right: 96px;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.content-help::-webkit-scrollbar{
+    display: none;
+}
+
+.help-text{
+    height: 1024px;
+    display: flex;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    gap: 24px;
+    flex-direction: column;
+}
+
+.what-is-join{
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.how-to-use{
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.counter{
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.arrowBack {
+    width: 37px;
+    height: 37px;
+  }
+  
+  .headline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .arrowBack:hover {
+    cursor: pointer;
+  }
+
+  @media  (max-width: 1068px) {
+    h1{
+        font-size: 56px;
+    }
+    .content-help{
+      margin-top: 35px;
+      gap: 30px;
+      padding-left: 40px;
+      padding-right: 40px
+  }
+  .help-text{
+    margin-top: 0px;
+  }
+  tbody{
+    gap: 16px;
+  }
+  tr{
+    gap: 16px
+  }
+  }
+
+  @media  (max-width: 600px) {
+    .content-help {
+      padding-left: 20px;
+      padding-right: 20px
+    }
+  };
+  

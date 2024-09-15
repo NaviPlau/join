@@ -1,0 +1,166 @@
+@media (max-width: 1300px){
+  .contacts-info-name {
+    width: fit-content;
+    gap: 40px;
+  }
+  .contact-box-name {
+    width: fit-content;
+    height: fit-content;
+  }
+  .big-letter-circle{
+    height: 90px;
+    width: 100px;
+    border-radius: 50%;
+  }
+  .contacts-info{
+    padding-left:30px;
+    width: fit-content
+  }
+  .text-box{
+    padding-left: 30px;
+  }
+}
+
+@media (max-width: 1068px){
+  .contact-box{
+    height: calc(100vh - 160px);
+    width: 100%
+  }
+  .contact-box button{
+    width: 80%;
+  }
+  #contactList{
+    width: 80%;
+  }
+  .rightInfoBox{
+    display: none;
+    position: absolute;
+    background-color: var(--background);
+    height: calc(100vh - 160px);
+    width: 100vw;
+    overflow-y: scroll;
+  }
+  .closeContactInfo{
+    display: flex;
+    position: fixed;
+    top: 100px;
+    right: 50px;
+    cursor: pointer;
+  }
+  .closeContactInfo:hover{
+    scale: 1.3;
+  }
+  .contacts-info-name{
+    height: fit-content;
+  }
+  .text-seperator{
+    height: 2px;
+    width: 180px;
+    display: block;
+    background-color: #29abe2
+  }
+  .headerContacts{
+    display: flex;
+  }
+  .text-box{
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 0px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .text-box h1{
+    margin: -10px;
+  }
+  .contacts-info-box{
+    display: flex;
+    justify-content: center;
+  }
+}
+@media (max-width:600px){
+  .contact-box button{
+    font-size: 0px;
+    width: fit-content;
+    gap:0px;
+    position: fixed;
+    bottom: 120px;
+    right: 60px;
+  }
+  #contactList{
+    width: 100%;
+  }
+  .contacts-info{
+    height: fit-content;
+  }
+  .closeContactInfo{
+    display: flex;
+  }
+  .text-box{
+    width: calc(100vw - 30px);
+    align-items: flex-start;
+    padding-left: 30px;
+    width: fit-content;
+  }
+  h3{
+    font-size: 40px;
+  }
+  .contacts{
+    padding: 10px;
+    min-width: 100%;
+  }
+  .letter-box{
+    padding: 10px;
+  }
+  .editContactPoints{
+    display: block;
+    position: fixed;
+    right: 50px;
+    bottom: 100px
+  }
+  .contact-box-edit-delete{
+    display: none;
+    position: fixed;
+    bottom: 140px;
+    flex-direction: column;
+    gap: 16px;
+    right: 90px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+    border-bottom-right-radius: 0px;
+    background-color: var(--border);
+  }
+}
+
+@media (max-width: 450px){
+  .big-letter-circle{
+    font-size: 32px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+  }
+  .text-box h1{
+    font-size: 45px;
+  }
+  .contacts-info{
+    padding: 0px;
+    width: 90vw;
+  }
+  .contacts-info-name{
+    gap: 16px;
+  }
+  .closeContactInfo{
+    right: 20px;
+  }
+  .contact-box button{
+    right: 20px;
+  }
+  .editContactPoints{
+    right: 20px;
+  }
+  .contact-box-edit-delete{
+    right: 60px
+  }
+}

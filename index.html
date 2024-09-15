@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/img/png/favicon.png">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Join</title>
+    <script src="js/login.js"></script>
+</head>
+
+<body>
+    <div class="overlay animationOverlayDekstop ">
+        <a href="index.html"><img src="assets/img/png/Capa 2.png" alt="Capa_2" class="animated-icon animationLogoDekstop"
+            id="animatedIcon"></a>
+    </div>
+    <section>
+        <div class="headSection">
+            <div class="logoLogIn">
+                <a href="index.html"><img src="assets/img/png/Capa 2.png" alt="Capa_2"></a>
+            </div>
+            <div class="signUp"><span>Not a Join user?<a href="register_form.html"><button class="signUpButton">Sign
+                            up</button></a></span></div>
+        </div>
+    </section>
+    <section class="register" id="registerContainer">
+        <a href="index.html"><img class="backArrow d-none" src="assets/img/png/arrow-left-line.png" alt=""></a>
+        <div>
+            <h1>Log in</h1>
+            <div class="separator"></div>
+        </div>
+        <form action="" onsubmit="return false">
+            <div class="input" id="invalidEmail">
+                <input type="email" id="email" required placeholder="E-mail">
+                <img class="icon" src="assets/img/png/mail.png" alt="">
+            </div>
+            <div class="input" id="invalidPassword">
+                <input type="password" id="repeatPassword" required placeholder="Password">
+                <img class="icon" src="assets/img/png/lock.png" alt="">
+            </div>
+            <div id="invalid"></div>
+            <div class="check">
+                <input type="checkbox" required>
+                <span class="flexStart">Remember me</span>
+            </div>
+            <div class="buttonContainer">
+                <button class="logIn">
+                    <p class="logInSpan colorWhite">Log in</p>
+                </button>
+                <a href="summary.html" class="guestLogIn">Guest Log in</a>
+            </div>
+        </form>
+    </section>
+    <div class="signUp signUpMobile" id="signUpMobile"><span>Not a Join user?<a href="register_form.html"><button
+                    class="signUpButton">Sign
+                    up</button></a></span></div>
+    <section class="policy">
+        <a href="privacy_policy.html">Privacy Policy</a>
+        <a href="legal_notice.html">Legal notice</a>
+    </section>
+</body>
+
+</html>

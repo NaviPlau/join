@@ -1,0 +1,457 @@
+
+
+body {
+  background-color: var(--background);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 73.2px;
+  margin: 0px;
+}
+
+.headSection {
+  padding-right: 50px;
+  padding-left: 50px;
+  margin-top: 50px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.logoLogIn {
+  display: flex;
+  align-items: flex-start;
+}
+.logoLogIn a{
+  height: 120px;
+}
+
+.logIn {
+  background-color: #2A3647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 15px 24px;
+  border-radius: 8px;
+  font-size: 21px;
+  width: 110px;
+  border: none;
+}
+
+.logoLogIn img {
+  width: 100px;
+  height: 120px;
+}
+
+.signUp span {
+  display: flex;
+  align-items: center;
+}
+
+.signUpButton {
+  width: 91px;
+  height: 49px;
+  font-size: 16px;
+  line-height: 19.2px;
+  font-weight: 700;
+}
+
+.signUpButton:hover {
+  border: none;
+  background-color: var(--blue);
+  transition: 200ms;
+}
+
+.guestLogIn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-style: solid;
+  border-color: #2A3647;
+  border-width: 1px;
+  height: 48px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 21px;
+  color: #2A3647;
+  box-sizing: border-box;
+  width: 190px;
+}
+
+.guestLogIn:hover {
+  border-color: var(--blue);
+  background-color: white;
+  color: var(--blue);
+  transition: 200ms;
+}
+
+.signUp button {
+  width: 91px;
+  height: 49px;
+  border-radius: 8px;
+  padding: 15px 16px;
+  margin-left: 10px;
+  background-color: #2A3647;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.loginButton {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-style: solid;
+  border-color: #2A3647;
+  border-width: 1px;
+  height: 48px;
+  padding: 15px 24px;
+  border-radius: 8px;
+  font-size: 21px;
+  width: 170px;
+}
+
+.register {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  background-color: white;
+  padding: 0px 88px 48px 88px;
+  border-radius: 30px;
+  gap: 32px;
+}
+
+.register a {
+  color: var(--blue);
+}
+
+.register a:hover {
+  text-decoration: underline var(--blue);
+  font-weight: 600;
+}
+
+.separator {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  margin-left: 18px;
+  background-color: var(--blue);
+  height: 3px;
+  width: 150px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--policy);
+}
+
+.flexStart {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.backArrow {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  left: -200px;
+  bottom: -80px;
+  margin-top: -32px;
+  border-radius: 50%;
+}
+
+.backArrow:hover {
+  background-color: var(--border);
+  cursor: pointer;
+}
+
+::placeholder {
+  color: var(--border);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.input {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 21px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.input input {
+  width: 100%;
+  border: none;
+}
+
+.input img:hover {
+  cursor: pointer;
+}
+
+.input:hover {
+  border: 1px solid var(--blue);
+}
+
+.check {
+  align-items: center;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.check input:hover {
+  cursor: pointer;
+}
+
+.check span {
+  width: 100%;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.buttonContainer {
+  justify-content: center;
+  display: flex;
+  gap: 35px;
+  height: 48px;
+  align-items: center;
+}
+
+button:hover {
+  background-color: var(--blue);
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.policy {
+  display: flex;
+  gap: 32px;
+  position: fixed;
+  bottom: 5px;
+}
+
+.policy a:hover {
+  color: var(--blue);
+  transform: scale(1.1);
+}
+
+.logInSpan {
+  color: #fff;
+}
+
+.buttonContainer a:hover {
+  text-decoration: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input {
+  height: 140%;
+}
+
+
+.buttonContainer a {
+  color: black;
+}
+
+#invalid {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  color: red;
+  height: 12px;
+}
+
+.invalid {
+  border-color: Red
+}
+
+
+@keyframes changeHeight {
+  from {
+    width: 280px;
+    height: 350px;
+    
+  }
+  to {
+    width: 100px;
+    height: 120px
+  }
+}
+
+@keyframes changeHeightUnder600px {
+  from {
+    position: absolute;
+    top: 30vh;
+    left: 20vw;
+    width: 280px;
+    height: 350px;
+    content: url(../assets/img/png/Join\ logo\ vector.png);
+    
+  }
+  to {
+    top: 35px;
+    left: 55px;
+    position: absolute;
+    width: 64px;
+    height: 78px;
+    content: url('../assets/img/png/Capa\ 2.png');
+  }
+}
+
+@keyframes moveToTop{
+  from{
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    opacity: 1;
+  }
+  to{
+    width: 100px;
+    height: 120px;
+    top: 50px;
+    left: 50px;
+    opacity: 0;
+  }
+}
+
+@keyframes moveToTopUnder1000px{
+  from{
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    
+    opacity: 1;
+  }
+  to{
+    width: 100px;
+    height: 120px;
+    top: 30px;
+    left: 50px;
+    opacity: 0;
+    
+  }
+}
+
+
+
+.animationLogoDekstop{
+  animation: changeHeight  2s 1s ease-out ;
+}
+.animationLogoUnder600px{
+  animation: changeHeightUnder600px  2s 1s ease-out;
+}
+.animationOverlayDekstop{
+  animation: moveToTop  2s  1s ease-out ;
+}
+
+.animationOverlayDekstopUnder1000px{
+  animation: moveToTopUnder1000px  2s 1s ease-out ;
+}
+
+
+.animated-icon {
+  width: 280px;
+  height: 350px;
+}
+
+
+.overlay {
+  overflow: hidden;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+}
+
+
+.signUpMobile{
+  margin-top: 35px;
+  display: none;
+}
+
+
+@media screen and (max-width: 1068px){
+  .signUp{
+    display: none;
+  }
+  .signUpMobile{
+    display: flex;
+  }
+  .headSection{
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 600px){
+  
+  .register{
+    padding: 0px 30px 48px 30px;
+    margin-top: 20px;
+    width: 80vw;
+  }
+  form{
+    width: 80%;
+  }
+  .buttonContainer{
+    flex-direction: column;
+    height: fit-content;
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .logoLogIn img {
+    width: 64px;
+    height: 78px;
+  }
+ 
+  .logIn{
+    width: 190px;
+  }
+}
+
+@media(max-height: 799px){
+  .policy {
+    display: flex;
+    gap: 32px;
+    position: relative;
+    margin-top: 30px;
+  }
+}
+

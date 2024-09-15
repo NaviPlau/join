@@ -1,0 +1,15 @@
+@media(max-width:600px){
+  .openedTask{
+    padding: 28px 20px;
+  }
+  #editPriorityButtons{
+    gap: 0px;
+  }
+  #editPriorityButtons button{
+    font-size: 16px;
+  }
+  #taskDescriptionTextarea{
+    height: 100px;
+    padding: 8px;
+  }
+}

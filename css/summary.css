@@ -1,0 +1,362 @@
+body {
+    font-family: 'inter', Arial, sans-serif;
+    margin: 0;
+    background-color: var(--background);
+    visibility: hidden;
+    height: 100vh;
+}
+
+header {
+    top: 0;
+    background-color: white;
+}
+
+.summaryLink{
+    background-color: #091931;
+    color: white !important;
+  }
+
+#content {
+    text-align: center;
+    height: calc(100vh - 80px) ;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.overSeperatorBox {
+    margin-top: 100px;
+    margin-bottom: 33px;
+}
+
+.seperatorBox {
+    margin-left: 96px;
+    display: flex;
+    gap: 30px;
+    width: 625px;
+    height: 73px;
+    align-items: center;
+    justify-content: center;
+}
+
+.seperator {
+    height: 59px;
+    width: 3px;
+    background-color: var(--blue);
+}
+
+.sepLeft {
+    line-height: 73.2px;
+    width: 264px;
+    height: 73px;
+    font-size: 61px;
+    font-weight: 700;
+    color: black;
+}
+
+.sepRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    width: 301px;
+    height: 32px;
+    font-size: 27px;
+    color: var(--gray);
+    text-align: center;
+}
+
+.overGreetBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 80px;
+}
+
+.greetBox {
+    top: 547.5px;
+    left: 968px;
+    width: 385px;
+    height: 136px;
+}
+
+.greetBox1 {
+    width: auto;
+    height: 56px;
+    color: var(--highlight);
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.rowInnerContent {
+    display: flex;
+    flex-direction: row;
+}
+
+.greetBox2 {
+    color: var(--blue);
+    width: 385px;
+    height: 77px;
+    font-weight: 700;
+    font-size: 64px;
+}
+
+.overDynamic {
+    display: flex;
+    justify-content: center;
+    margin-left: 96px;
+}
+
+.dynamic {
+    display: flex;
+    flex-direction: column;
+    top: 335px;
+    left: 328px;
+    gap: 30px;
+}
+
+.dynamic1 {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+}
+
+.toDo {
+    background-color: white;
+    width: 264px;
+    height: 168px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.toDo1 {
+    width: 69px;
+    height: 69px;
+    border-radius: 50%;
+    background-color: #2A3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkIcon {
+    top: 23.43px;
+    left: 19.53px;
+    border: 7px;
+}
+
+.toDo1 img {
+    width: 32px;
+    height: 32px;
+}
+
+.done {
+    width: 264px;
+    height: 168px;
+    font-size: 64px;
+}
+
+.bothToDo {
+    display: flex;
+    flex-direction: column;
+}
+
+.leftToDo {
+    display: flex;
+    align-items: center;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 76.8px;
+}
+
+.rightToDo {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.done {
+    background-color: white;
+    width: 264px;
+    height: 168px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 18px;
+    border-radius: 30px;
+}
+
+.urgentDate {
+    background-color: white;
+    width: 560px;
+    height: 168px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 30px;
+    padding: 28px, 48px, 28px, 48px;
+}
+
+.tasksRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tasksInBoard {
+    background-color: white;
+    width: 158px;
+    height: 168px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 13px;
+    border-radius: 30px;
+}
+
+.tasksInProgress {
+    background-color: white;
+    width: 158px;
+    height: 168px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 13px;
+    border-radius: 30px;
+}
+.content{
+    height: 100vh;
+}
+
+.awaitingFeedback {
+    background-color: white;
+    width: 158px;
+    height: 168px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 13px;
+    border-radius: 30px;
+}
+
+.taskFontSize {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 76.8px;
+    display: flex;
+    align-items: center;
+}
+
+.taskFontSizeLower {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.tasksCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.urgent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.justifyCenter {
+    justify-content: center;
+}
+
+.toDoRed {
+    width: 69px;
+    height: 69px;
+    border-radius: 50%;
+    background-color: #FF3D00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.seperatorDate {
+    height: 102.02px;
+    width: 2px;
+    background-color: #D1D1D1;
+    gap: 13px;
+}
+
+.date {
+    display: flex;
+    width: 178px;
+    height: 25px;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+    color: #2A3647;
+}
+
+.dateUp {
+    width: 178px;
+    height: 57px;
+    gap: 13px;
+}
+
+.upcoming {
+    display: flex;
+    width: 148px;
+    height: 19px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    color: #2A3647;
+}
+
+.linkNone {
+    color: inherit;
+    text-decoration: none;
+}
+
+.toDo1, .done1 {
+    width: 69px;
+    height: 69px;
+    border-radius: 50%;
+    background-color: #2A3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: background-color 0.125s ease;
+}
+
+.toDo1 img,
+.done1 img {
+    width: 32px;
+    height: 32px;
+    transition: opacity 0.125s ease;
+}
