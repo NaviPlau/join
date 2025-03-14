@@ -2,7 +2,7 @@
  * The base URL for the Firebase database where tasks are stored.
  * @constant {string}
  */
-const BASE_URL = 'https://join-57676-default-rtdb.europe-west1.firebasedatabase.app/';
+const BASE_URL = 'https://join-57676-default-rtdb.europe-west1.firebasedatabase.app/tasks/';
 
 /**
  * Fetches tasks from the Firebase database and updates the local tasks array.

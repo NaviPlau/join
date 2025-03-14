@@ -185,6 +185,7 @@ function generateTasks() {
     document.getElementById('awaitFeedback').innerHTML = completedTasksFeedback();
     document.getElementById('urgentCount').innerHTML = completedTasksUrgent();
     document.getElementById('board').innerHTML = tasks.length;
+    console.log(tasks)
 }
 
 /**
